@@ -70,5 +70,5 @@ its whole history and cannot be undone, so this is the most thorough stage.
 ## Done when
 
 Every requirement at the level has a status with evidence; the history decision is made
-and carried out; accepted risks are written where users will see them; the project record
+and carried out; accepted risks are written in the README's security model section; the project record
 is updated; and the human has decided to publish.

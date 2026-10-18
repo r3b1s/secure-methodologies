@@ -9,5 +9,5 @@
 - **Requires:** a documented way to report vulnerabilities privately to the security
   contacts.
 - **Meet it:** a dedicated address, a web form, or the platform's private reporting
-  feature, named in the security policy.
+  feature, named in the security policy (see the [SECURITY.md template](../../../assets/SECURITY.md.template)).
 - **Verify:** check the documented channel exists and is private.

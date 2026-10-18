@@ -2,7 +2,7 @@
 
 - **Status:** accepted
 - **Date:** 2026-10-18
-- **Amended by:** [0012](0012-one-file-per-requirement.md), superseded by [0013](0013-requirements-by-level-folder.md)
+- **Amended by:** [0012](0012-one-file-per-requirement.md), superseded by [0013](0013-requirements-by-level-folder.md); [0014](0014-single-skill.md)
 
 ## Context
 

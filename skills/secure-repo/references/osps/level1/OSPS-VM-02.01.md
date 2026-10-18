@@ -7,5 +7,6 @@
 > Summarised in this skill's own words.
 
 - **Requires:** security contacts in the project documentation.
-- **Meet it:** a `SECURITY.md` (or similar) naming who to contact and how.
+- **Meet it:** a `SECURITY.md` (or similar) naming who to contact and how. Start from the
+  [SECURITY.md template](../../../assets/SECURITY.md.template).
 - **Verify:** read it; check the contacts are current with the human.

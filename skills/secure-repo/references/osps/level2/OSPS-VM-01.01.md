@@ -10,5 +10,5 @@
   timeframe.
 - **Meet it:** a `SECURITY.md` at the repository root saying how to report, how reports
   are handled and how quickly the project will respond. The timeframe is the human's
-  commitment to make.
+  commitment to make. Start from the [SECURITY.md template](../../../assets/SECURITY.md.template).
 - **Verify:** read it and check the reporting route works.

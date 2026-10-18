@@ -78,7 +78,7 @@ catalog of tool categories, and guidance for filling the Baseline's gaps. See
 | Path | What it is |
 |---|---|
 | [skills/secure-repo/](skills/secure-repo/) | The methodology, packaged as an [Agent Skill](https://agentskills.io/). This is the canonical content, for people and agents alike. |
-| [skills/research-unfamiliar-stack/](skills/research-unfamiliar-stack/) | How to research a language or stack that has no guidance here yet. |
+| [docs/glossary.md](docs/glossary.md) | Terms as this repository uses them, with their sources. |
 | [docs/decisions/](docs/decisions/) | Decision records: what was decided, when and why. |
 | [docs/research/](docs/research/) | Dated research behind the decisions. |
 
@@ -91,16 +91,16 @@ its links to the guidance for each Baseline requirement as you need it.
 
 ## Using it as an agent
 
-The skills follow the [Agent Skills](https://agentskills.io/specification) format and
-are found by the [`skills` CLI](https://github.com/vercel-labs/skills) in the top-level
+The skill follows the [Agent Skills](https://agentskills.io/specification) format and
+is found by the [`skills` CLI](https://github.com/vercel-labs/skills) in the top-level
 `skills/` folder. Once this repository has a public home:
 
 ```sh
-npx skills add <owner>/<repo> --skill secure-repo --skill research-unfamiliar-stack
+npx skills add <owner>/<repo> --skill secure-repo
 ```
 
 Add `-g` to install for your user rather than the current project, or `--list` to see the
-available skills first. Each skill is self-contained: it needs nothing else from this
+available skills first. The skill is self-contained: it needs nothing else from this
 repository.
 
 ## Licence

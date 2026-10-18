@@ -101,7 +101,7 @@ URLs will not resolve until it is.
 | **`accepts-automated-change-request`** | a dependency update tool's configuration suggests `true`; confirm |
 | **`core-team`** | as for `administrators` |
 | **`license.expression`**, **`license.url`** | the licence file and package metadata; an SPDX expression |
-| **`security.assessments.self.comment`** | a summary of any security assessment done, with `evidence`, `date` and `name` if available; otherwise ask. The specification's minimum example uses "Self assessment has not yet been completed." |
+| **`security.assessments.self.comment`** | a summary of any security assessment done, with `evidence` (for example a link to the README's security model section), `date` and `name` if available; otherwise ask. The specification's minimum example uses "Self assessment has not yet been completed." |
 | `security.assessments.third-party` | ask |
 | `security.champions` | ask |
 | `security.tools` | security tools configured in the repository (CI configuration, pre-commit hooks). For each: `name`, `type` (`fuzzing`, `container`, `secret`, `SCA`, `SAST` or `other`), `rulesets` (`["default"]` unless customised), `integration` (`adhoc`, `ci`, `release`, each true or false) and `results` (may be empty). List only tools actually configured |

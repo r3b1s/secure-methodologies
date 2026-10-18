@@ -117,8 +117,11 @@ applies.
   risks of using the project.
 - [references/tools/categories.md](references/tools/categories.md): tool categories,
   independent of language. Stack-specific suggestions are in
-  [references/tools/stacks/](references/tools/stacks/).
+  [references/tools/stacks/](references/tools/stacks/); for a stack with no file there,
+  read [references/tools/stacks/stack-research.md](references/tools/stacks/stack-research.md).
 - [references/security-insights.md](references/security-insights.md): read only when the
   user wants to create a Security Insights file.
+- [assets/SECURITY.md.template](assets/SECURITY.md.template): a simple vulnerability
+  disclosure policy to start a project's `SECURITY.md` from.
 - [references/platforms/github.md](references/platforms/github.md): GitHub-specific steps,
   including tools to offer (never require) on GitHub-hosted repositories.

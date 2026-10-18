@@ -15,8 +15,8 @@ This skill goes further in two ways:
 - **Before the first release too.** Publishing a repository already exposes its code and
   its users to risk, so assess it before it goes public, at a depth suited to its level.
 - **Telling users.** The Baseline requires the assessment to be performed, not shared.
-  This skill also records, where users will read it, the risks they accept by using the
-  software.
+  This skill also records the risks users accept, in a security model section of the
+  README.
 
 ## Depth by level
 
@@ -77,9 +77,15 @@ decision.
 
 ## Recording the risks a user accepts
 
-Publish a short security model where users will find it (for example a section of the
-security policy or the README). It covers:
+Publish a short **security model** as an easily visible section of the project's README
+(for example `## Security model`, linked from the README's opening lines if the README is
+long). It is not the same as `SECURITY.md`, which is the project's vulnerability
+disclosure policy: how to report a vulnerability and what happens next. The security
+model explains the threat model and what using the software means for the user. It
+covers:
 
+- the threat model in brief: what the software protects, from whom, and what is out of
+  scope
 - what the software does with privilege, and why (an enumerated list)
 - what it trusts, and what it does not protect against
 - each accepted risk, with the reason it is accepted and any mitigation
@@ -87,3 +93,7 @@ security policy or the README). It covers:
 
 Every statement must be checkable against the code. An accepted risk that users are not
 told about is an unknown risk to them.
+
+Other files can point to it rather than repeat it: `SECURITY.md` may link to it to explain
+what counts as a vulnerability, and a Security Insights file can link to it as the
+evidence for its self-assessment (`security.assessments.self.evidence`).

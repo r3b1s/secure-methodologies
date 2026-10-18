@@ -1,17 +1,9 @@
----
-name: research-unfamiliar-stack
-description: Research a programming language, framework or toolchain that has no stack guide in the secure-repo skill, safely and with verifiable sources, before recommending tools or practices for it. Use when securing a repository whose stack is not yet documented, or when an agent is unfamiliar with the stack.
-license: MIT
----
+# Researching an unfamiliar stack
 
-# Research an unfamiliar stack
-
-## When to use this
-
-When a repository's language, framework, package manager or build system has no stack
-file in the `secure-repo` skill (under `references/tools/stacks/`), or when you are not
-confident you know the stack's current security tooling and practices. The result is a
-set of options with sources for the human to choose from, never a choice made for them.
+Read this only when a repository's language, framework, package manager or build system
+has no file in this folder, or when you are not confident you know the stack's current
+security tooling and practices. The result is a set of options with sources for the human
+to choose from, never a choice made for them (ground rule 1).
 
 ## Sources to trust, and how to verify them
 
@@ -33,8 +25,8 @@ For every fact you record:
 - if two sources disagree, say so, and say which you trust and why
 - if you could not confirm it from a primary source, mark it unverified
 
-Never state a tool fact from memory (the `secure-repo` skill's ground rule 5). Tool
-landscapes change faster than any model's training data.
+Never state a tool fact from memory (ground rule 5). Tool landscapes change faster than
+any model's training data.
 
 ## What to find out
 
@@ -58,16 +50,14 @@ status (latest release date, recent activity), and how it is installed.
 
 ## Recording what you found
 
-Present the findings to the human as options with tradeoffs, grouped by the tool
-categories in `secure-repo` (`references/tools/categories.md`). If the human wants to keep
-them, write them up, with their approval, in the same shape as a stack file: one section
-per category, one entry per tool with the fields above, the sources, and the date
-verified.
+Present the findings to the human as options with tradeoffs, grouped by the
+[tool categories](../categories.md). If the human wants to keep them, write them up, with
+their approval, as a stack file in this folder: one section per category, one entry per
+tool with the fields above, the sources, and the date verified.
 
 ## What not to do
 
 - Do not install, download or run anything found during research without the human's
   approval.
-- Do not pick tools, versions or pipeline structure; present options (the `secure-repo`
-  skill's ground rule 1).
+- Do not pick tools, versions or pipeline structure; present options (ground rule 1).
 - Do not present search summaries or secondary sources as confirmed facts.

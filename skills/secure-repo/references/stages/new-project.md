@@ -42,7 +42,8 @@ requirement.
    statement that contributions are not accepted), and security contacts
    ([OSPS-GV-02.01](../osps/level1/OSPS-GV-02.01.md),
    [OSPS-GV-03.01](../osps/level1/OSPS-GV-03.01.md),
-   [OSPS-VM-02.01](../osps/level1/OSPS-VM-02.01.md)). At level 2, a disclosure
+   [OSPS-VM-02.01](../osps/level1/OSPS-VM-02.01.md)); the
+   [SECURITY.md template](../../assets/SECURITY.md.template) covers contacts and reporting. At level 2, a disclosure
    policy and private reporting ([OSPS-VM-01.01](../osps/level2/OSPS-VM-01.01.md), [OSPS-VM-03.01](../osps/level2/OSPS-VM-03.01.md)).
 8. **An early threat sketch.** A short model of what the software will do and where its
    trust boundaries are ([threat-modeling.md](../threat-modeling.md)), so design choices

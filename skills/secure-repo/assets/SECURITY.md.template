@@ -1,0 +1,30 @@
+<!--
+Template for a project's SECURITY.md: its vulnerability disclosure policy. Replace every
+<PLACEHOLDER>, then delete this comment. The contact channel, response time, disclosure
+timeline and supported versions are commitments for the maintainers to choose; an agent
+proposes them and the human decides.
+
+Structure based on the GitHub security policy template in the OpenSSF Vulnerability
+Disclosure Guide (CC-BY-4.0):
+https://github.com/ossf/oss-vulnerability-guide/blob/main/templates/security_policies/github_security_policy.md
+
+Place the file in the repository root, `.github/` or `docs/`.
+-->
+# Security policy
+
+## Reporting a vulnerability
+
+Please do not report security vulnerabilities in public issues. Report them privately
+through <PRIVATE CHANNEL, for example the platform's private vulnerability reporting
+feature or a security e-mail address>.
+
+Include a description of the issue, the steps to reproduce it, the affected versions and,
+if known, any mitigations.
+
+We will respond within <N> working days. If we confirm the vulnerability, we will
+<HOW IT IS TRACKED AND FIXED, for example open a security advisory> and disclose it within
+<N> days of the report, or sooner once a fix is available.
+
+## Supported versions
+
+Security fixes are made for <SUPPORTED VERSIONS, for example only the latest release>.

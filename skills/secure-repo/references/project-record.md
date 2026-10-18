@@ -13,7 +13,7 @@ count if they are written in it (ground rule 2).
 | Constraints | what CI can and cannot run (and why), tools that are acceptable or ruled out, hosting, anything else that limits the work |
 | Standing permissions | kinds of change an agent may make without asking each time, named precisely; empty by default |
 | Results | for each requirement at the project's level: status (met, not met, not applicable, not checked), how it was checked, and the date |
-| Accepted risks | each risk the human accepted, with the reason and where users are told about it |
+| Accepted risks | each risk the human accepted, with the reason; users are told about it in the README's security model section |
 | Open items | requirements not yet met and gaps found, with what was decided about each |
 
 ## Where it lives

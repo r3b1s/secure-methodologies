@@ -23,7 +23,7 @@ begin.
    previous results.
 4. **Re-read high-risk code that changed**, with the same priorities as in the
    [pre-publication audit](pre-publication-audit.md) (step 3).
-5. **Update the threat model** and the published risks of use
+5. **Update the threat model** and the README's security model section
    ([threat-modeling.md](../threat-modeling.md)).
 6. **Reassess every requirement at the level** (the files in
    `../osps/level1/` up to the project's level), not only the ones touched by changes; settings and documents
