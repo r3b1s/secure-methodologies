@@ -93,10 +93,10 @@ its links to the guidance for each Baseline requirement as you need it.
 
 The skill follows the [Agent Skills](https://agentskills.io/specification) format and
 is found by the [`skills` CLI](https://github.com/vercel-labs/skills) in the top-level
-`skills/` folder. Once this repository has a public home:
+`skills/` folder. To install it:
 
 ```sh
-npx skills add <owner>/<repo> --skill secure-repo
+npx skills add r3b1s/secure-methodologies --skill secure-repo
 ```
 
 Add `-g` to install for your user rather than the current project, or `--list` to see the
