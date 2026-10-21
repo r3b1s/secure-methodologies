@@ -82,7 +82,7 @@ catalog of tool categories, and guidance for filling the Baseline's gaps. See
 | Path | What it is |
 |---|---|
 | [skills/secure-repo/](skills/secure-repo/) | The methodology, packaged as an [Agent Skill](https://agentskills.io/). This is the canonical content, for people and agents alike. |
-| [skills/qubes-os/](skills/qubes-os/) | A category of Qubes OS skills: the dom0 and in-qube command-line tools, and building disposable qubes. |
+| [skills/qubes-os/](skills/qubes-os/) | A category of Qubes OS skills: the dom0 and in-qube command-line tools, building disposable qubes, and the `qubesadmin` Python library. |
 | [docs/glossary.md](docs/glossary.md) | Terms as this repository uses them, with their sources. |
 | [docs/decisions/](docs/decisions/) | Decision records: what was decided, when and why. |
 | [docs/research/](docs/research/) | Dated research behind the decisions. |
@@ -115,9 +115,11 @@ repository.
 [Qubes OS](https://www.qubes-os.org/): which command-line tools exist in dom0
 (`qubes-dom0-cli`) and inside other qubes (`qubes-vm-cli`), and how to build disposable
 qubes whose configuration and secrets persist only where intended
-(`qubes-disposable-vms`). Their scope is using Qubes OS and building its qubes correctly;
-they are independent of the repository methodology. They were checked against Qubes OS
-R4.3.2 and the upstream documentation.
+(`qubes-disposable-vms`), and how to manage qubes from Python with `qubesadmin`, the
+library over the Admin API (`qubes-admin-python`). Their scope is using Qubes OS and
+building its qubes correctly; they are independent of the repository methodology. They
+were checked against Qubes OS R4.3.2 and the upstream documentation;
+`qubes-admin-python` against the R4.3 source and an offline test fake.
 
 ```sh
 npx skills add r3b1s/secure-methodologies/skills/qubes-os          # all of them
