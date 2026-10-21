@@ -2,7 +2,7 @@
 
 - **Status:** accepted
 - **Date:** 2026-10-18
-- **Amended by:** [0010](0010-skills-self-contained.md)
+- **Amended by:** [0010](0010-skills-self-contained.md), [0018](0018-skill-categories.md)
 
 ## Context
 

@@ -2,7 +2,8 @@
 
 - **Status:** accepted
 - **Date:** 2026-10-18
-- **Amended by:** [0004](0004-include-baseline-legal-controls.md) (legal controls)
+- **Amended by:** [0004](0004-include-baseline-legal-controls.md) (legal controls),
+  [0017](0017-add-qubes-os-skills.md) (Qubes OS skills)
 
 ## Context
 
