@@ -213,11 +213,66 @@ is an injection seam, not an isolation boundary: pi has no built-in permission s
 extensions run with full process permissions. Sandbox the process (container, VM) if you
 need a boundary.
 
-`buildSystemPromptSections` (`core/system-prompt.ts`) assembles tagged sections: preamble,
-tools, rules, docs pointers, addendum (`APPEND_SYSTEM.md`), project context, skills, cwd. A
-custom `SYSTEM.md` replaces the preamble. Project context comes from the first of
-`AGENTS.override.md`, `AGENTS.md`, `CLAUDE.md` found in the agent dir, then the cwd and its
-ancestors. No date is inserted.
+### System prompt construction
+
+The prompt is built from named sections and stored in the session as patches, not as one
+string.
+
+**Building.** `buildSystemPromptSections` (`core/system-prompt.ts`) returns an ordered map:
+`preamble`, `tools`, `rules`, `docs`, `addendum`, `project_context`, `skills`, `cwd`, then
+extension-defined sections (the built-in MCP extension adds `mcp_servers`). Every section
+except the preamble is wrapped as `<name>...</name>`.
+
+- `preamble`: fixed text ("You are an expert coding assistant operating inside pi...").
+- `tools`: one line per selected tool that has a `promptSnippet`, plus a fixed note that
+  custom tools may exist. Hidden tools are left out.
+- `rules`: each selected tool's `promptGuidelines`, de-duplicated, plus fixed rules (be
+  concise, show file paths) and a bash-only file-operations rule when `grep`, `find` and
+  `ls` are not active.
+- `docs`: pointers to pi's README, docs and examples for pi-related questions.
+- `addendum`: `APPEND_SYSTEM.md` and every `--append-system-prompt`, joined by blank lines.
+- `project_context`: `<project_instructions path=...>` blocks. The loader takes the first of
+  `AGENTS.override.md`, `AGENTS.md`, `CLAUDE.md` found in the agent dir, then the cwd and its
+  ancestors (`core/resource-loader.ts`).
+- `skills`: name and description of each skill (`formatSkillsForPrompt`); bodies load on
+  demand.
+- `cwd`: the working directory. No date is inserted.
+
+**Replacing it.** `SYSTEM.md` or `--system-prompt` (a literal string, or a path whose file
+is read) replaces the default base. When a custom prompt is set, the `tools`, `rules` and
+`docs` sections are dropped too, not only the preamble; appended text, project context,
+skills and cwd stay. Discovery: an explicit option first, then `.pi/SYSTEM.md` (only if the
+project is trusted), then `<agent-dir>/SYSTEM.md`. Project replaces global; there is no
+merge. `APPEND_SYSTEM.md` is discovered the same way.
+
+**Extension control.** The `before_agent_start` event receives a mutable
+`systemPromptOptions` and a rendered `systemPrompt`. Editing sections is the preferred route
+(for example setting `sections.mcp_servers`). Returning `{systemPrompt}` forces a whole
+replacement for that run, which is projected onto each request and not stored.
+`context_with_system` is request-local: it sees the full transcript and must keep the system
+message at index 0, and its output is not persisted. A custom section with an invalid name
+throws.
+
+**Delivery and storage.** The `Agent` is created with an empty `systemPrompt`; the prompt
+reaches the provider as `SystemMessage` entries in the transcript (the `pi-ai` format with
+`content`, named `sections` where `null` deletes one, and `toolsAdded`/`toolsRemoved`). On
+each run `_preparePromptAndToolLoadout` diffs the freshly built sections against the last
+system message in the transcript (`diffSystemPromptSections`) and appends only what changed.
+Compaction snapshots the sections into the transcript. The rendered string is never stored,
+so on resume the options are rebuilt from the current files and any difference becomes a
+new patch.
+
+**Rebuild triggers.** The tool loadout changing and `extendResources` rebuild it. Context
+files and skills are read only in `resourceLoader.reload()`, so edits to `AGENTS.md` or a
+skill take effect after `/reload`.
+
+**Caching.** Unchanged sections add no new message, so the cached prefix survives.
+Providers that cannot represent section or tool deltas receive the full text, which can
+break the prefix. A forced `systemPrompt`, a changed `cwd`, or changed `project_context`
+alters the prefix. A cache warmer (`cache-warmer.ts`) refreshes session requests at about
+90% of the model's cache TTL, tuned by `cacheRetention` or `PI_CACHE_RETENTION`.
+
+Compare `pi-durable`, which stores the same patch format but ships no prompt text.
 
 ### Configuration
 

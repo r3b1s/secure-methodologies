@@ -40,6 +40,7 @@ pi-durable is a **sibling runtime, not a backend for the pi CLI**.
 | Tool replay | Not handled | Intent committed before the effect; re-run only if marked `replay: "safe"` |
 | Retried submit | None | `requestId` makes it exactly-once |
 | Compaction | Blocking, inline | Background task; waits only near the limit or on overflow |
+| System prompt | Built-in sections from files (preamble, tools, rules, `AGENTS.md`, skills, cwd), diffed into the session as patches | No built-in text; host-defined sections, same patch format, replayed from `pi.system` entries (§7) |
 | Extensions | Loaded at runtime by jiti from disk | Named bundles in a registry; conversations store names; swap while running |
 | Clients | One process; RPC is one client over pipes | Any client attaches to any conversation, gets the current view then changes |
 | Branching | Entry `parentId` tree in one file | `fork(at)` shares history up to a point; documents choose inherit/current/fresh |
@@ -227,9 +228,59 @@ defineTool({ name, description, parameters /* typebox */,
   compacts and retries once. Settings: `compaction.enabled`, `reserveTokens`,
   `keepRecentTokens`, `backgroundTokens`, `modelOverrides`. Old entries stay in storage.
   `conversation.reset(handoff?)` starts a fresh context.
-- **System prompt sections** are re-rendered before each request. Changes are written into
-  the transcript as minimal patch entries so models that support it receive a diff and the
-  prompt cache stays valid. The first system message is kept at the front.
+
+### System prompt construction
+
+pi-durable has **no built-in prompt text**: no preamble, no tool guidelines, no
+`AGENTS.md` or skills loading. The host installs extensions whose sections produce every
+word. (The "You are a concise coding assistant" preamble in the examples is written by the
+example host.) The only built-in section is `codemode`, which lists callable, non-deferred
+tools and appears only when that extension is installed. The `read`, `write`, `edit` and
+`bash` tools carry their model-facing guidance in their descriptions, and nothing installs
+them automatically (`createCodingTools`).
+
+**Representation.** A section is `section(key, render, { tag? })`. `render(input, context)`
+receives the conversation id, the resolved agent (tools, cwd), the `env`, `shown` (what the
+transcript currently shows) and a `read` helper; returning `undefined` omits the section.
+Tagged sections become `<key>...</key>`. Keys match `/^[a-z][a-z0-9_-]*$/` and are unique
+per extension; `instructions` is reserved and renders last. Order follows extension install
+order, and a later extension's same-key section replaces the earlier one in place.
+`wrapSection(key, fn)` decorates whichever definition won. Tools are not prompt text: they
+are declarations carried on the same system messages as `toolsAdded`/`toolsRemoved`.
+
+**Per request (`pi.generation` `prepare` phase).**
+
+1. Replay the transcript's `pi.system` entries to get what is currently *shown* (a value
+   sets a section, `null` deletes it).
+2. Render every section from the live agent configuration to get what is *desired*. A
+   section that throws keeps its shown text and the error is reported.
+3. `planSystemEntries` diffs desired against shown and appends a **minimal patch**, for
+   example `{ role: "system", content: "", sections: { cwd: "/repo/packages" } }`. Tool
+   changes ride on the last section entry or get their own entry. With no change, nothing is
+   appended.
+4. Two fallbacks: if the change would alter the *order* of sections or tools, it removes all
+   and re-adds all; and after a head marker (`pi.reset` or a compaction) with no later
+   `pi.system`, it writes a fresh baseline containing every section and tool, plus `omit`
+   edits for the older `pi.system` entries.
+
+**Storage and audit.** Only `pi.system` entries are persisted, holding the already-rendered,
+already-tagged text and tool declarations. Render functions, the agent and the env are not
+stored; shown state is recomputed by replay. So the transcript records exactly what the
+model saw, and renderers must be deterministic.
+
+**Provider side.** The request carries only `{ messages }`; the baseline system message in
+the transcript is the prompt, and `leadWithSystem` keeps the first one at the front. In
+`pi-ai`, a provider that supports mid-conversation system messages gets the deltas
+(Anthropic: leading `system` block plus native tool add/remove blocks; OpenAI-style APIs:
+`Updated system prompt section "name":` messages). Providers without delta support (Google,
+Bedrock, Codex) get one collapsed message with the full replayed text on every request. An
+unchanged prefix adds no bytes, which keeps prompt caches warm.
+
+**Versus the regular harness.** Both store the same `SystemMessage` patch format from
+`pi-ai`. pi builds a fixed set of sections from files on disk (preamble, tools, rules, docs,
+`AGENTS.md`, skills, cwd) and offers `SYSTEM.md` and extension events to override them;
+pi-durable has no defaults and lets the host define all sections, with no whole-prompt
+override.
 
 ## 8. Documents, forks, storage, environments
 
