@@ -3,6 +3,7 @@
 - **Status:** accepted
 - **Date:** 2026-10-21
 - **Amends:** [0006](0006-skills-are-canonical.md)
+- **Amended by:** [0020](0020-harness-categories-and-pi-skills.md) (harness categories)
 
 ## Context
 
