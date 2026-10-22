@@ -3,7 +3,8 @@
 Guidance for making a software repository safe to publish and easy to trust, written so
 that a person, an LLM agent, or both together can follow it through most of a project's
 life. The repository also collects related [Agent Skills](https://agentskills.io/) for
-working securely, such as the [Qubes OS skills](#qubes-os-skills).
+working securely and well, such as the [Qubes OS skills](#qubes-os-skills) and the
+[pi harness skills](#pi-harness-skills).
 
 ## Scope
 
@@ -83,6 +84,7 @@ catalog of tool categories, and guidance for filling the Baseline's gaps. See
 |---|---|
 | [skills/secure-repo/](skills/secure-repo/) | The methodology, packaged as an [Agent Skill](https://agentskills.io/). This is the canonical content, for people and agents alike. |
 | [skills/qubes-os/](skills/qubes-os/) | A category of Qubes OS skills: the dom0 and in-qube command-line tools, building disposable qubes, and the `qubesadmin` Python library. |
+| [skills/harness-pi/](skills/harness-pi/) | A category of skills for the pi coding-agent harness: its monorepo, the regular harness internals, and the experimental `pi-durable` runtime. Skills specific to one agent harness go in a `harness-<name>` folder. |
 | [docs/glossary.md](docs/glossary.md) | Terms as this repository uses them, with their sources. |
 | [docs/decisions/](docs/decisions/) | Decision records: what was decided, when and why. |
 | [docs/research/](docs/research/) | Dated research behind the decisions. |
@@ -128,6 +130,23 @@ npx skills add r3b1s/secure-methodologies --skill qubes-dom0-cli    # just one
 
 Category folders hold skills but are not skills themselves; see
 [decision 0018](docs/decisions/0018-skill-categories.md).
+
+## pi harness skills
+
+[skills/harness-pi/](skills/harness-pi/) holds skills for developing with and on
+[pi](https://github.com/earendil-works/pi), a minimal coding-agent harness:
+`pi-monorepo-info` (the official monorepo: packages, dependency graph, build and check
+scripts, contributor rules, releases), `pi-core` (the regular harness: provider layer,
+agent loop, sessions, tools, extensions, supporting libraries) and `pi-durable` (the
+experimental durable runtime and how it differs). Skills specific to one agent harness go
+in a `harness-<name>` folder; see [decision 0020](docs/decisions/0020-harness-categories-and-pi-skills.md).
+They were read from the pi source at commit `74f468640` (packages 1.4.0), not by running
+pi, and pi changes quickly, so a clone of pi wins over them.
+
+```sh
+npx skills add r3b1s/secure-methodologies/skills/harness-pi    # all of them
+npx skills add r3b1s/secure-methodologies --skill pi-core       # just one
+```
 
 ## Licence
 
