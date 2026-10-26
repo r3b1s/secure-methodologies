@@ -21,7 +21,8 @@ Architecture Decision Records for this repository, in Michael Nygard's format (s
 | [0014](0014-single-skill.md) | Fold stack research into the secure-repo skill | accepted |
 | [0015](0015-security-md-template.md) | SECURITY.md is the vulnerability disclosure policy, with a simple template | accepted |
 | [0016](0016-security-model-in-readme.md) | Publish the security model as a section of the README | accepted |
-| [0017](0017-add-qubes-os-skills.md) | Widen the scope to include Qubes OS skills | accepted, amended by 0019 and 0020 |
-| [0018](0018-skill-categories.md) | Group related skills in category folders | accepted, amended by 0020 |
+| [0017](0017-add-qubes-os-skills.md) | Widen the scope to include Qubes OS skills | accepted, amended by 0019, 0020 and 0021 |
+| [0018](0018-skill-categories.md) | Group related skills in category folders | accepted, amended by 0020 and 0021 |
 | [0019](0019-add-qubes-admin-python-skill.md) | Add a skill for the qubesadmin Python library | accepted |
 | [0020](0020-harness-categories-and-pi-skills.md) | Group harness-specific skills in `harness-<name>` categories, starting with pi | accepted |
+| [0021](0021-add-design-category-and-material-design-3-skill.md) | Add a `design` skill category, starting with Material Design 3 | accepted |

@@ -85,6 +85,7 @@ catalog of tool categories, and guidance for filling the Baseline's gaps. See
 | [skills/secure-repo/](skills/secure-repo/) | The methodology, packaged as an [Agent Skill](https://agentskills.io/). This is the canonical content, for people and agents alike. |
 | [skills/qubes-os/](skills/qubes-os/) | A category of Qubes OS skills: the dom0 and in-qube command-line tools, building disposable qubes, and the `qubesadmin` Python library. |
 | [skills/harness-pi/](skills/harness-pi/) | A category of skills for the pi coding-agent harness: its monorepo, the regular harness internals, and the experimental `pi-durable` runtime. Skills specific to one agent harness go in a `harness-<name>` folder. |
+| [skills/design/](skills/design/) | A category of UI/UX design-system skills, starting with Material Design 3 and M3 Expressive (`material-design-3`). |
 | [docs/glossary.md](docs/glossary.md) | Terms as this repository uses them, with their sources. |
 | [docs/decisions/](docs/decisions/) | Decision records: what was decided, when and why. |
 | [docs/research/](docs/research/) | Dated research behind the decisions. |
@@ -146,6 +147,23 @@ pi, and pi changes quickly, so a clone of pi wins over them.
 ```sh
 npx skills add r3b1s/secure-methodologies/skills/harness-pi    # all of them
 npx skills add r3b1s/secure-methodologies --skill pi-core       # just one
+```
+
+## Design skills
+
+[skills/design/](skills/design/) holds UI/UX design-system skills, starting with
+`material-design-3` for [Material Design 3](https://m3.material.io/) and **Material 3
+Expressive**: the three-tier token architecture, HCT dynamic color and surface-container
+elevation, spring-based motion physics, the 30-style baseline + emphasized type scale, the
+10-step corner shape scale and shape morphing, adaptive window size classes, component
+selection (including M3 Expressive button groups, split buttons, floating toolbars, FAB
+menus, and loading indicators), official upstream repositories, and incremental adoption in
+existing Web, Desktop/Studio, Android, and Flutter projects. See
+[decision 0021](docs/decisions/0021-add-design-category-and-material-design-3-skill.md).
+
+```sh
+npx skills add r3b1s/secure-methodologies/skills/design              # all of them
+npx skills add r3b1s/secure-methodologies --skill material-design-3  # just one
 ```
 
 ## Licence

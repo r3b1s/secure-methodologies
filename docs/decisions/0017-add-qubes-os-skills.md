@@ -4,7 +4,8 @@
 - **Date:** 2026-10-21
 - **Amends:** [0002](0002-scope-of-initial-version.md)
 - **Amended by:** [0019](0019-add-qubes-admin-python-skill.md) (qubesadmin Python skill),
-  [0020](0020-harness-categories-and-pi-skills.md) (harness skills)
+  [0020](0020-harness-categories-and-pi-skills.md) (harness skills),
+  [0021](0021-add-design-category-and-material-design-3-skill.md) (design skills)
 
 ## Context
 
